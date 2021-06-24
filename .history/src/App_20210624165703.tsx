@@ -1,17 +1,19 @@
+import { createContext, useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import { Home } from './pages/Home';
 import { NewRoom } from "./pages/NewRoom";
 
-import { AuthContextProvider } from './contexts/AuthContext';
+export const AuthContext = createContext({});
 
 function App() {
+  const [user, setUser] = useState();
   return (
     <BrowserRouter>
-      <AuthContextProvider>
+      <AuthContext.Provider value={{ user, setUser }}>
         <Route path="/" exact component={Home} />
         <Route path="/rooms/new" component={NewRoom} />
-      </AuthContextProvider>
+      </AuthContext.Provider>
     </BrowserRouter>
   );
 }
