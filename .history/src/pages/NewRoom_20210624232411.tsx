@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 import illustrationImg from '../assets/images/illustration.svg'
@@ -13,7 +13,6 @@ import { Button } from '../components/Button';
 
 export function NewRoom() {
   const { user } = useAuth();
-  const history = useHistory();
   const [newRoom, setNewRoom] = useState('');
 
   async function handleCreateRoom(event: FormEvent) {
@@ -29,8 +28,6 @@ export function NewRoom() {
       title: newRoom,
       authorId: user?.id,
     })
-
-    history.push(`/rooms/${firebaseRoom.key}`)
   }
 
   return (
